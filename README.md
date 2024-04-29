@@ -1,2 +1,3 @@
 # wm-scripts
-scripts for window managers
+Differents scripts thet i had write for improving
+my life quality on hyprland
