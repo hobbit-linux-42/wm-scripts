@@ -47,7 +47,7 @@ fn main() {
     for file in fs::read_dir(wallpapers_dir.clone()).unwrap(){
     	files.push(file.expect("[!] file path error").path());
     } //get the values from the config files
-	let mut c: usize = fs::read_to_string(log_file.clone()).expect("[!] file read error").parse().unwrap();
+	let mut c: usize = fs::read_to_string(log_file.clone()).expect("[!] file read error").trim().parse().unwrap();
 	let sec: u64 = fs::read_to_string(sleep_file.clone()).expect("[!] file read error").trim().parse().unwrap();
 
 	//the main loop
@@ -59,7 +59,7 @@ fn main() {
     	thread::sleep(Duration::from_secs(sec));
     	let _ = Command::new("killall").arg("swaybg").spawn();
 
-		if c >= files.len(){
+		if c >= files.len()+1{
 			c=0;
 		}else{
 			c+=1;
