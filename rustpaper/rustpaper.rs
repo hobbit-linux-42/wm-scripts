@@ -52,18 +52,18 @@ fn main() {
 
 	//the main loop
 	loop{
+		if c < files.len()-1{
+			c+=1;
+		}else{
+			c=0;
+		}
+	
 		//change wallpaper
 		let _ = Command::new(swaybg_launcher.clone())
 		.arg(files[c].clone()).spawn();
 		//sleep and then remove the wallpaper
     	thread::sleep(Duration::from_secs(sec));
     	let _ = Command::new("killall").arg("swaybg").spawn();
-
-		if c >= files.len()+1{
-			c=0;
-		}else{
-			c+=1;
-		}
 		//log the current wallpaper index
 		fs::write(log_file.clone(), c.to_string()).expect("[!] file write error");
     }
